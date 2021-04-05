@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Input;
-
+use Str;
 class CustomerController extends Controller
 {
     public function getCustomer(){
@@ -41,7 +41,8 @@ class CustomerController extends Controller
                 $customer = $response->json()['data'];
               
                 $ShowBranches = $Branches->json()['data'];
-              
+                
+                
                 return view('admin.customer.listcustomer',compact('customer','ShowBranches'));
             }else{
                 return redirect()->back()->with('error','Không tìm thấy yêu cầu!!!');
@@ -172,4 +173,6 @@ class CustomerController extends Controller
                 return redirect()->back()->with('error','Xóa không thành công!!!');
             }
         }
+        
 }
+

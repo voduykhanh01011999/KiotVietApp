@@ -23,7 +23,7 @@
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item">Id khách hàng: <span class="badge badge-success">{{$details['id']}}</span> </li>
                                             <li class="list-group-item">Mã khách hàng: <span class="badge badge-success">{{$details['code']}}</span></li>
-                                            <li class="list-group-item">Ngày sinh: <span class="badge badge-success">{{$details['birthDate']}}</span></li>
+                                            <li class="list-group-item">Ngày sinh: <span class="badge badge-success">@if(isset($details['birthDate'])){{$details['birthDate']}}@endif</span></li>
                                             <li class="list-group-item">Giới tính: <span class="badge badge-success">
                                             @if(isset($details['gender']))
                                                 @if($details['gender']==true)
@@ -35,12 +35,18 @@
                                                 {{('NULL')}}
                                             @endif
                                             </span></li>
-                                            <li class="list-group-item">Số điện thoại: <span class="badge badge-success">{{$details['contactNumber']}}</span></li>
-                                            <li class="list-group-item">Địa chỉ: <span class="badge badge-success">{{$details['address']}}</span></li>
-                                            <li class="list-group-item">Id Chi nhánh: <span class="badge badge-success">{{$details['branchId']}}</span></li>
-                                            <li class="list-group-item">Phường xã: <span class="badge badge-success">{{$details['wardName']}}</span></li>
-                                            <li class="list-group-item">Khu vực: <span class="badge badge-success">{{$details['locationName']}}</span></li>
-                                            <li class="list-group-item">Email: <span class="badge badge-success">{{$details['email']}}</span></li>
+                                            <li class="list-group-item">Số điện thoại: <span class="badge badge-success">
+                                            @if(isset($details['contactNumber']))
+                                                    {{$details['contactNumber']}} 
+                                                @else 
+                                                    {{('NULL')}} 
+                                            @endif
+                                            </span></li>
+                                            <li class="list-group-item">Địa chỉ: <span class="badge badge-success">@if(isset($details['address'])){{$details['address']}} @else {{('NULL')}} @endif</span></li>
+                                            <li class="list-group-item">Id Chi nhánh: <span class="badge badge-success">@if(isset($details['branchId'])){{$details['branchId']}} @else {{('NULL')}} @endif</span></li>
+                                            <li class="list-group-item">Phường xã: <span class="badge badge-success">@if(isset($details['wardName'])){{$details['wardName']}} @else {{('NULL')}} @endif</span></li>
+                                            <li class="list-group-item">Khu vực: <span class="badge badge-success">@if(isset($details['locationName'])){{$details['locationName']}} @else {{('NULL')}} @endif</span></li>
+                                            <li class="list-group-item">Email: <span class="badge badge-success">@if(isset($details['email'])){{$details['email']}} @else {{('NULL')}} @endif</span></li>
                                             <li class="list-group-item">Ảnh đại diện: 
                                                 @if(isset($details['avatar']))
                                                         <img src="{{$details['avatar']}}" style="width:80px;" alt="">
@@ -55,11 +61,11 @@
                                                 {{('NULL')}}
                                             @endif
                                             </span></li>
-                                            <li class="list-group-item">Nợ hiện tại: <span class="badge badge-success">{{number_format($details['debt'])}} VNĐ</span></li>
-                                            <li class="list-group-item">Tổng số tiền bán: <span class="badge badge-success">{{number_format($details['totalInvoiced'])}} VNĐ</span></li>
-                                            <li class="list-group-item">Tổng bán trừ trả hàng: <span class="badge badge-success">{{number_format($details['totalRevenue'])}} VNĐ</span></li>
-                                            <li class="list-group-item">Điểm tích lũy: <span class="badge badge-success">{{number_format($details['totalPoint'])}} VNĐ</span></li>
-                                            <li class="list-group-item">Điểm thưởng: <span class="badge badge-success">{{number_format($details['totalPoint'])}} VNĐ</span></li>
+                                            <li class="list-group-item">Nợ hiện tại: <span class="badge badge-success">@if(isset($details['debt'])){{number_format($details['debt'])}}VNĐ @else {{('NULL')}} @endif </span></li>
+                                            <li class="list-group-item">Tổng số tiền bán: <span class="badge badge-success">@if(isset($details['totalInvoiced'])){{number_format($details['totalInvoiced'])}}VNĐ @else {{('NULL')}}@endif </span></li>
+                                            <li class="list-group-item">Tổng bán trừ trả hàng: <span class="badge badge-success">@if(isset($details['totalRevenue'])){{number_format($details['totalRevenue'])}}VNĐ @else {{('NULL')}}@endif </span></li>
+                                            <li class="list-group-item">Điểm tích lũy: <span class="badge badge-success">@if(isset($details['totalPoint'])){{number_format($details['totalPoint'])}}VNĐ @else {{('NULL')}}@endif </span></li>
+                                            <li class="list-group-item">Điểm thưởng: <span class="badge badge-success">@if(isset($details['totalPoint'])){{number_format($details['totalPoint'])}}VNĐ @else {{('NULL')}}@endif </span></li>
                                         </ul>
                                  </div>                       
                             </div>

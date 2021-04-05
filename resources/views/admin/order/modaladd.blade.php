@@ -30,7 +30,7 @@
             </div>
             <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="address">Họ tên người nhận</label>
+                        <label for="Receiver">Họ tên người nhận</label>
                         <input type="text" class="form-control" id="Receiver" name="Receiver" placeholder="Nhập họ tên người nhận">
                     </div>
                     <div class="form-group col-md-6">
@@ -38,20 +38,16 @@
                         <input type="text" class="form-control" id="ContactNumber" name="ContactNumber" placeholder="Nhập số điện thoại">
                 </div>
             </div>
-            <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="birthDate">Địa chỉ nhận</label>
-                        <input type="text" class="form-control" id="Address" name="Address" placeholder="Nhập địa chỉ">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="LocationName">Tỉnh, Huyện</label>
-                        <input type="text" class="form-control" id="LocationName" name="LocationName" placeholder="Nhập tỉnh huyện">
-                </div>
-            </div>
             <div class="form-group">
-                <label for="">Phường Xã</label>
-                <input type="text" class="form-control" id="WardName" name="WardName" placeholder="Nhập Xã">
+                <label for="Address">Địa chỉ nhận</label>
+                <input type="text" class="form-control" id="Address" name="Address" placeholder="Nhập địa chỉ">      
             </div>
+            
+            <div class="form-group">
+                <label for="locationName">Khu Vực</label>
+                <input type="text" class="form-control" name="LocationName" id="LocationName" placeholder="VD: Tỉnh - Huyện">
+            </div>
+
             <div class="form-group">
                 <label for="DeliveryCode">Mã vận đơn</label>
                 <input type="text" class="form-control" id="DeliveryCode" name="DeliveryCode" placeholder="Nhập mã vận đơn">
@@ -69,11 +65,11 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="exampleFormControlSelect2">Ngày giao hàng</label>
-                    <input type="date" class="form-control" name="date">
+                    <input type="date" class="form-control" name="ExpectedDelivery">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="exampleFormControlSelect2">Phí giao hàng</label>
-                    <input type="number" class="form-control" name="Price" id="Price">
+                    <input type="text" class="form-control" name="Price" id="Price">
                 </div>
             </div>
                 <div class="form-group">
@@ -92,33 +88,30 @@
                     </div>
              </div>
              <div class="form-row">
-                <div class="form-group col-md-6">
-                <label for="exampleFormControlSelect2">Sản phẩm</label>
-                    <select class="form-control chonsanpham ProductId" name="ProductId" id="ProductId">
-                            <option value="0">--Chọn sản phẩm--</option>
+                <div class="form-group col-md-12">
+                <label for="ProductId">Chọn sản phẩm</label>
+                    <select multiple  class="form-control chonsanpham ProductId" name="ProductId[]"  id="ProductId">
                         @foreach($product as $pd)
-                            <option value="{{$pd['id']}}">{{$pd['name']}}</option>
+                            @php
+                                foreach($pd['images'] as $img)
+                                {
+                                    for($i=0; $i < 1 ; $i++)
+                                    {
+                                        $images = $img;
+                                    }
+                                }
+                             @endphp
+                            <option  style="background-image:url('{{$img}}');background-repeat: no-repeat;background-size: 20px 20px;padding-left:20px;" value="{{$pd['id']}}">{{$pd['name']}} (@if(isset($pd['basePrice'])){{number_format($pd['basePrice'])}}VNĐ @endif) </option>
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="exampleFormControlSelect2">Giá đơn hàng</label>
-                    <input type="number"  class="form-control" name="PriceOrder" id="PriceOrder">
-                </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="exampleFormControlSelect2">Số lượng</label>
-                    <input type="number"  class="form-control" name="Quantity" id="Quantity">
+                <div class="form-group col-md-12">
+                    <label for="Note">Ghi chú</label>
+                    <input type="number" hidden class="form-control" name="Quantity" id="Quantity" value="1">
+                    <textarea class="form-control" id="" cols="30" rows="10" name="Note" id="Note"></textarea>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="exampleFormControlSelect2">Ghi chú</label>
-                    <input type="text" class="form-control" name="Note">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="">Rank</label>
-                <input type="number" class="form-group" name="Rank">
             </div>
         </div>
         <div class="modal-footer">

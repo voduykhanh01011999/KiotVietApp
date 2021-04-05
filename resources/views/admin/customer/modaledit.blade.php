@@ -27,13 +27,13 @@
                     </div>
                     <div class="form-group col-md-6">
                     <label for="contactNumber">Số điện thoại</label>
-                    <input type="text" class="form-control" id="contactNumber" name="contactNumber" value="{{$ctm['address']}}">
+                    <input type="text" class="form-control" id="contactNumber" name="contactNumber" value="{{$ctm['contactNumber']}}">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="birthDate">Ngày sinh</label>
-                    <input type="text" class="form-control" id="birthDate" name="birthDate" value="@if(isset($ctm['birthDate'])){{\Carbon\Carbon::parse($ctm['birthDate'])->format('d/m/Y')}}@endif">
+                    <input type="date" class="form-control" id="birthDate" name="birthDate" value="">
                     </div>
                     <div class="form-group col-md-6">
                     <label for="email">Email khách hàng</label>
@@ -43,21 +43,21 @@
             <div class="form-group">
                 <label for="">Giới tính</label>
                 <div class="form-check">
-                    <input class="form-check-input" @if(isset($ctm['gender'])) @if($ctm['gender'] == true) checked @endif @endif name="gender" type="radio" id="gridCheck" value="true">
-                    <label class="form-check-label" for="gridCheck">
+                    <input class="form-check-input" @if(isset($ctm['gender'])) @if($ctm['gender'] == true) checked @endif @endif name="gender" type="radio" id="gridCheck1" value="true">
+                    <label class="form-check-label" for="gridCheck1">
                         Nam
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" @if(isset($ctm['gender'])) @if($ctm['gender'] == false) checked @endif @endif name="gender" type="radio" id="gridCheck" value="false">
-                    <label class="form-check-label" for="gridCheck">
+                    <input class="form-check-input" @if(isset($ctm['gender'])) @if($ctm['gender'] == false) checked @endif @endif name="gender" type="radio" id="gridCheck2" value="false">
+                    <label class="form-check-label" for="gridCheck2">
                         Nữ
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="locationName">Nhập khu vực</label>
-                <input type="text" class="form-control" id="locationName" name="locationName" value="{{$ctm['locationName']}}">
+                <label for="locationName">Khu Vực</label>
+                <input type="text" class="form-control" name="locationName" id="locationName" value="@if(isset($ctm['locationName'])){{$ctm['locationName']}}@endif">
             </div>
             <div class="form-group">
                 <label for="comments">Ghi chú</label>

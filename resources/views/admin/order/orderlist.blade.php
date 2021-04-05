@@ -25,11 +25,12 @@
                                                 <th>Tổng tiền thanh toán</th>
                                                 <th>Tiền đã trả</th>
                                                 <th>Thời gian đặt hàng</th>
-                                                <th colspan="3">Hành động</th>
+                                                <th colspan="2">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($order as $od) 
+                                        @foreach($order as $od)
+                                            @if($od['status']!=4) 
                                             <tr style="text-align:center;font-size:7pt;">
                                                 <td>{{$od['id']}} / {{$od['code']}}</td>
                                                 <td>{{$od['branchName']}}</td>
@@ -50,10 +51,10 @@
                                                 <td>{{number_format($od['total'])}} VNĐ</td>
                                                 <td>{{number_format($od['totalPayment'])}} VNĐ</td>
                                                 <td>{{ \Carbon\Carbon::parse($od['createdDate'])->format('d/m/Y  H:i:s')}}</td>
-                                                <td><a class="btn btn-success btn-sm" href=""><i class="fas fa-eye"></i> Chi tiết</a></td>
-                                                <td><a class="btn btn-success btn-sm" href=""><i class="fas fa-eye"></i> Sửa</a></td>
-                                                <td><a class="btn btn-success btn-sm" href=""><i class="fas fa-eye"></i> Xóa</a></td>
+                                                <td><a class="btn btn-success btn-sm" href="{{url('/order/details/'.$od['id'])}}"><i class="fas fa-eye"></i> Chi tiết</a></td>
+                                                <td><a class="btn btn-success btn-sm" href="{{url('/order/delete/'.$od['id'])}}"><i class="fas fa-eye"></i> Xóa</a></td>
                                             </tr>
+                                            @endif
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -94,36 +95,5 @@
             });
 
         })
-        
-	
 	</script>
-    <script>
-    $(document).ready(function(){
-        $('.chonsanpham').on('change',function(){
-            var action = $(this).attr('id');
-            var idproduct = $(this).val();
-            var pvc = $('#Price').val();
-            
-            var _token = $('input[name="_token"]').val();
-            if(idproduct!=0 && pvc!="")
-            {
-                $.ajax({
-                    url:('order/selectMoney'),
-                    method:'post',
-                    data: {action:action,idproduct:idproduct,pvc:pvc,_token:_token},
-                    success:function(data){
-                        $('#PriceOrder').val(data.price);
-                       
-                        
-                    }
-                });
-            }
-            else
-            {
-                toastr.error('Mời bạn nhập phí giao hàng để tính tiền đơn hàng!!!');
-                $('#PriceOrder').val('');
-            }
-        });//mid
-    }); //top
-    </script>
 @endsection

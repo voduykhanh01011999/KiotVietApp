@@ -43,10 +43,10 @@ Route::group(['prefix'=>'categories'],function(){
 });
 Route::group(['prefix'=>'order'],function(){
     Route::get('/list-order','OrderController@getOrder');
+    Route::get('/details/{id}','OrderController@getDetails');
     Route::post('/create','OrderController@postCreateOd');
-    Route::post('/update/{id}','OrderController@getUpdateOd');
+    Route::post('/update/{id}','OrderController@postUpdateOd');
     Route::get('/delete/{id}','OrderController@getDeleteOd');
     Route::post('/selectCustomer','OrderController@postSelect');
-    Route::post('/selectMoney','OrderController@postSelectMn');
 });
-Route::get('/test','ProductController@test');
+

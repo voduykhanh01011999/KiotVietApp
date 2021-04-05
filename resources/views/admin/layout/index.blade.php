@@ -116,6 +116,7 @@
                 },10000);
             });
         </script>
+       
         <script>
         function TinhTien(){
             $phivanchuyen = document.getElementById('Price').value;

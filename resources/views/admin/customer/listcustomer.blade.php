@@ -63,3 +63,32 @@
 
 @include('admin.customer.modaladd')
 @endsection
+
+@section('script')
+    <script>
+         $(document).ready(function(){
+
+    $('.chonTQAdd').on('change',function(){
+        var action = $(this).attr('id');
+        var matp = $(this).val();
+        var _token = $('input[name="_token"]').val();
+        var result = '';
+
+        if(action=='TinhThanhPho')
+        {
+        result = 'QuanHuyenAdd';
+        }
+        $.ajax({
+            url: ('customer/postTQ'),
+            method: 'POST',
+            data: {action:action,matp:matp,_token:_token},
+            success:function(data){
+                
+                $('#'+result).html(data);
+            }
+        });
+});
+
+});
+</script>
+@endsection

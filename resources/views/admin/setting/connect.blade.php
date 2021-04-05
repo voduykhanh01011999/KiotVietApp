@@ -16,11 +16,11 @@
                                         <input type="text" class="form-control" id="retailer" name="retailer" value="{{$retailer}}" placeholder="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="client_id">ID cửa hàng</label>
+                                        <label for="client_id">Client ID</label>
                                         <input type="text" class="form-control" id="client_id" name="client_id" value="{{$client_id}}" placeholder="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="client_secret">Mã bảo mật</label>
+                                        <label for="client_secret">Client Secret (Mã bảo mật)</label>
                                         <input type="text" class="form-control" id="client_secret" name="client_secret" value="{{$client_secret}}" placeholder="">
                                     </div>
                                     <div class="form-group">
